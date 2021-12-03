@@ -1,6 +1,6 @@
 use std::env::args;
 
-use crate::days::{day1, day2};
+use crate::days::{day1, day2, day3};
 
 mod days;
 mod util;
@@ -18,6 +18,8 @@ fn main() {
         "1.2" => day1::part2(),
         "2.1" => day2::part1(),
         "2.2" => day2::part2(),
+        "3.1" => day3::part1(),
+        "3.2" => day3::part2(),
         _ => format!("Day {} not implemented", args[1]),
     };
 

@@ -23,16 +23,12 @@ pub fn part1() -> String {
 pub fn part2() -> String {
     let input = include_str!("../../data/day1.txt");
     let values = input.lines().map(|x| x.parse::<i32>().unwrap()).collect::<Vec<_>>();
-
-    let window = values.iter()
-        .zip(values.iter().skip(1))
-        .zip(values.iter().skip(2))
-        .map(|((a, b), c)| a + b + c);
+    let windows = values.windows(3).map(|window| window.iter().sum::<i32>());
 
     let mut increments = 0;
     let mut previous_value = None;
 
-    for value in window {
+    for value in windows {
         if let Some(v) = previous_value {
             if value > v {
                 increments += 1;
