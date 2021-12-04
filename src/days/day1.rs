@@ -1,8 +1,7 @@
 // https://adventofcode.com/2021/day/1
 
-pub fn part1() -> String {
-    let input = include_str!("../../data/day1.txt");
-    let values = input.lines().map(|x| x.parse::<i32>().unwrap());
+pub fn part1(input: impl AsRef<str>) -> String {
+    let values = input.as_ref().lines().map(|x| x.parse::<i32>().unwrap());
 
     let mut increments = 0;
     let mut previous_value = None;
@@ -20,9 +19,12 @@ pub fn part1() -> String {
     increments.to_string()
 }
 
-pub fn part2() -> String {
-    let input = include_str!("../../data/day1.txt");
-    let values = input.lines().map(|x| x.parse::<i32>().unwrap()).collect::<Vec<_>>();
+pub fn part2(input: impl AsRef<str>) -> String {
+    let values = input
+        .as_ref()
+        .lines()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
     let windows = values.windows(3).map(|window| window.iter().sum::<i32>());
 
     let mut increments = 0;
@@ -43,15 +45,27 @@ pub fn part2() -> String {
 
 #[cfg(test)]
 mod tests {
+    use crate::{get_input, get_test};
+
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(), "1466");
+        assert_eq!(part1(get_test(1)), "7");
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(), "1491");
+        assert_eq!(part2(get_test(1)), "5");
+    }
+
+    #[test]
+    fn test_part1_real() {
+        assert_eq!(part1(get_input(1)), "1466");
+    }
+
+    #[test]
+    fn test_part2_real() {
+        assert_eq!(part2(get_input(1)), "1491");
     }
 }
