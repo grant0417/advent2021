@@ -7,12 +7,12 @@ struct BingoBoard {
 }
 
 impl BingoBoard {
-    fn from_string(input: &str) -> BingoBoard {
+    fn from_string(input: impl AsRef<str>) -> BingoBoard {
         let mut board = [0; 25];
         let checked = [false; 25];
 
         let mut i = 0;
-        for line in input.lines() {
+        for line in input.as_ref().lines() {
             for num in line.split_whitespace() {
                 board[i] = num.parse().unwrap();
                 i += 1;
@@ -21,7 +21,7 @@ impl BingoBoard {
         BingoBoard { board, checked }
     }
 
-    fn check(&mut self, num: u32) {
+    fn mark(&mut self, num: u32) {
         for i in 0..25 {
             if self.board[i] == num {
                 self.checked[i] = true;
@@ -80,7 +80,7 @@ pub fn part1(input: impl AsRef<str>) -> String {
         .map(|s| s.parse().unwrap())
         .collect::<Vec<u32>>();
 
-    let boards_input = input.as_ref().lines().skip(2).collect::<Vec<&str>>();
+    let boards_input: Vec<_> = input.as_ref().lines().skip(2).collect();
     let mut boards: Vec<_> = boards_input
         .chunks(6)
         .into_iter()
@@ -93,7 +93,7 @@ pub fn part1(input: impl AsRef<str>) -> String {
     for num in draw_numbers {
         // Mark boards
         for board in &mut boards {
-            board.check(num);
+            board.mark(num);
         }
 
         // Check if any board is bingo
@@ -104,7 +104,7 @@ pub fn part1(input: impl AsRef<str>) -> String {
         }
     }
 
-    return String::from("No winning board found");
+    String::from("No winning board found")
 }
 
 pub fn part2(input: impl AsRef<str>) -> String {
@@ -117,7 +117,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
         .map(|s| s.parse().unwrap())
         .collect::<Vec<u32>>();
 
-    let boards_input = input.as_ref().lines().skip(2).collect::<Vec<&str>>();
+    let boards_input: Vec<_> = input.as_ref().lines().skip(2).collect();
     let mut boards: Vec<_> = boards_input
         .chunks(6)
         .into_iter()
@@ -130,7 +130,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
     for num in draw_numbers {
         // Mark boards
         for board in &mut boards {
-            board.check(num);
+            board.mark(num);
         }
 
         // Check if a single board remains
@@ -142,7 +142,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
         boards.retain(|board| !board.check_bingo());
     }
 
-    return String::from("No winning board found");
+    String::from("No winning board found")
 }
 
 #[cfg(test)]

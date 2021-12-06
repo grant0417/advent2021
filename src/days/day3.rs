@@ -58,9 +58,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
         // Delete lines that don't have the most common bit
         oxygen_ratings = oxygen_ratings
             .into_iter()
-            .filter(|line| {
-                line.chars().nth(i).unwrap() == most_common
-            })
+            .filter(|line| line.chars().nth(i).unwrap() == most_common)
             .collect::<Vec<_>>();
     }
 
@@ -92,9 +90,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
         // Delete lines that don't have the least common bit
         co2_ratings = co2_ratings
             .into_iter()
-            .filter(|line| {
-                line.chars().nth(i).unwrap() == least_common
-            })
+            .filter(|line| line.chars().nth(i).unwrap() == least_common)
             .collect::<Vec<_>>();
     }
 
@@ -104,13 +100,13 @@ pub fn part2(input: impl AsRef<str>) -> String {
 
     for (j, bit) in oxygen_ratings[0].chars().enumerate() {
         if bit == '1' {
-            oxygen_rating += 1 << bit_count - j - 1;
+            oxygen_rating += 1 << (bit_count - j - 1);
         }
     }
 
     for (j, bit) in co2_ratings[0].chars().enumerate() {
         if bit == '1' {
-            co2_rating += 1 << bit_count - j - 1;
+            co2_rating += 1 << (bit_count - j - 1);
         }
     }
 
