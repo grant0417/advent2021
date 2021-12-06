@@ -126,9 +126,11 @@ impl SeaBed {
     }
 
     fn plot_line(&mut self, line: &Line) {
-        match line.line_type() {
+        let line_type = line.line_type();
+
+        match line_type {
             LineType::Horizontal | LineType::Vertical => self.plot_horizontal_vertical(line),
-            LineType::ForwardDiagonal => {
+            LineType::ForwardDiagonal | LineType::BackwardDiagonal => {
                 let left_point = line.start.min(line.end);
                 let right_point = line.start.max(line.end);
 
@@ -136,19 +138,11 @@ impl SeaBed {
 
                 for i in 0..=dx {
                     let x = left_point.x + i;
-                    let y = left_point.y + i;
-                    self.plot(&Point { x, y });
-                }
-            }
-            LineType::BackwardDiagonal => {
-                let left_point = line.start.min(line.end);
-                let right_point = line.start.max(line.end);
-
-                let dx = right_point.x - left_point.x;
-
-                for i in 0..=dx {
-                    let x = left_point.x + i;
-                    let y = left_point.y - i;
+                    let y = if line_type == LineType::ForwardDiagonal {
+                        left_point.y + i
+                    } else {
+                        left_point.y - i
+                    };
                     self.plot(&Point { x, y });
                 }
             }

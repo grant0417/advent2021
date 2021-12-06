@@ -41,6 +41,8 @@ fn main() {
         "4.2" => day4::part2(get_input(4)),
         "5.1" => day5::part1(get_input(5)),
         "5.2" => day5::part2(get_input(5)),
+        "6.1" => day6::part1(get_input(6)),
+        "6.2" => day6::part2(get_input(6)),
         _ => format!("Day {} not implemented", args[1]),
     };
 

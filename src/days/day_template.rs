@@ -1,10 +1,18 @@
 // https://adventofcode.com/2021/day/?
 
+fn parse_input(input: impl AsRef<str>) -> () {
+    ()
+}
+
 pub fn part1(input: impl AsRef<str>) -> String {
+    let parsed_input = parse_input(input);
+
     String::new()
 }
 
 pub fn part2(input: impl AsRef<str>) -> String {
+    let parsed_input = parse_input(input);
+
     String::new()
 }
 
@@ -17,7 +25,6 @@ mod tests {
     const TEST_PART_2_RESULT: &'static str = "";
     const REAL_PART_1_RESULT: &'static str = "";
     const REAL_PART_2_RESULT: &'static str = "";
-
 
     #[test]
     fn test_part1() {
