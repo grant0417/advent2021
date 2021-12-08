@@ -20,6 +20,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
 mod tests {
     use super::*;
     use crate::{get_input, get_test};
+    use test::{black_box, Bencher};
 
     const DAY_NUM: u32 = 0;
 

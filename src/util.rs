@@ -8,7 +8,7 @@ fn get_data(file_path: impl AsRef<Path>) -> String {
 }
 
 /// Load day input from input folder
-pub fn get_input(day: u32) -> String {
+pub fn get_real(day: u32) -> String {
     get_data(format!("data/real/day{}.txt", day))
 }
 

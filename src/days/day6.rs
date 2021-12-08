@@ -3,12 +3,13 @@
 fn parse_input(input: impl AsRef<str>) -> Vec<usize> {
     input
         .as_ref()
+        .trim()
         .split(',')
         .map(|x| x.parse::<usize>().unwrap())
         .collect()
 }
 
-fn compute_day(input: impl AsRef<str>, day: usize) -> usize {
+fn comput_fish_count(input: impl AsRef<str>, day: usize) -> usize {
     let parsed_input = parse_input(input);
     let mut fish_cohorts = [0usize; 9];
 
@@ -25,17 +26,17 @@ fn compute_day(input: impl AsRef<str>, day: usize) -> usize {
 }
 
 pub fn part1(input: impl AsRef<str>) -> String {
-    compute_day(input, 80).to_string()
+    comput_fish_count(input, 80).to_string()
 }
 
 pub fn part2(input: impl AsRef<str>) -> String {
-    compute_day(input, 256).to_string()
+    comput_fish_count(input, 256).to_string()
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{get_input, get_test};
+    use crate::{get_real, get_test};
     use test::{black_box, Bencher};
 
     const DAY_NUM: u32 = 6;
@@ -61,21 +62,21 @@ mod tests {
 
     #[test]
     fn test_part1_real() {
-        let result = part1(get_input(DAY_NUM));
+        let result = part1(get_real(DAY_NUM));
         println!("Part 1 real result: {}", result);
         assert_eq!(result, REAL_PART_1_RESULT);
     }
 
     #[test]
     fn test_part2_real() {
-        let result = part2(get_input(DAY_NUM));
+        let result = part2(get_real(DAY_NUM));
         println!("Part 2 real result: {}", result);
         assert_eq!(result, REAL_PART_2_RESULT);
     }
 
     #[bench]
     fn part1_bench(b: &mut Bencher) {
-        let input = get_input(DAY_NUM);
+        let input = get_real(DAY_NUM);
         b.iter(|| {
             black_box(part1(input.clone()));
         });
@@ -83,7 +84,7 @@ mod tests {
 
     #[bench]
     fn part2_bench(b: &mut Bencher) {
-        let input = get_input(DAY_NUM);
+        let input = get_real(DAY_NUM);
         b.iter(|| {
             black_box(part2(input.clone()));
         });
