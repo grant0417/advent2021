@@ -248,6 +248,9 @@ pub fn part2(input: impl AsRef<str>) -> String {
 mod tests {
     use super::*;
     use crate::{get_input, get_test};
+    use test::{black_box, Bencher};
+
+    const DAY_NUM: u32 = 5;
 
     const TEST_PART_1_RESULT: &'static str = "5";
     const TEST_PART_2_RESULT: &'static str = "12";
@@ -272,5 +275,21 @@ mod tests {
     #[test]
     fn test_part2_real() {
         assert_eq!(part2(get_input(5)), REAL_PART_2_RESULT);
+    }
+
+    #[bench]
+    fn part1_bench(b: &mut Bencher) {
+        let input = get_input(DAY_NUM);
+        b.iter(move || {
+            black_box(part1(input.clone()));
+        });
+    }
+
+    #[bench]
+    fn part2_bench(b: &mut Bencher) {
+        let input = get_input(DAY_NUM);
+        b.iter(move || {
+            black_box(part2(input.clone()));
+        });
     }
 }

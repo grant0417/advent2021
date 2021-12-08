@@ -36,6 +36,9 @@ pub fn part2(input: impl AsRef<str>) -> String {
 mod tests {
     use super::*;
     use crate::{get_input, get_test};
+    use test::{black_box, Bencher};
+
+    const DAY_NUM: u32 = 6;
 
     const TEST_PART_1_RESULT: &'static str = "5934";
     const TEST_PART_2_RESULT: &'static str = "26984457539";
@@ -44,21 +47,45 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(part1(get_test(6)), TEST_PART_1_RESULT);
+        let result = part1(get_test(DAY_NUM));
+        println!("Part 1 test result: {}", result);
+        assert_eq!(result, TEST_PART_1_RESULT);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2(get_test(6)), TEST_PART_2_RESULT);
+        let result = part2(get_test(DAY_NUM));
+        println!("Part 2 test result: {}", result);
+        assert_eq!(result, TEST_PART_2_RESULT);
     }
 
     #[test]
     fn test_part1_real() {
-        assert_eq!(part1(get_input(6)), REAL_PART_1_RESULT);
+        let result = part1(get_input(DAY_NUM));
+        println!("Part 1 real result: {}", result);
+        assert_eq!(result, REAL_PART_1_RESULT);
     }
 
     #[test]
     fn test_part2_real() {
-        assert_eq!(part2(get_input(6)), REAL_PART_2_RESULT);
+        let result = part2(get_input(DAY_NUM));
+        println!("Part 2 real result: {}", result);
+        assert_eq!(result, REAL_PART_2_RESULT);
+    }
+
+    #[bench]
+    fn part1_bench(b: &mut Bencher) {
+        let input = get_input(DAY_NUM);
+        b.iter(|| {
+            black_box(part1(input.clone()));
+        });
+    }
+
+    #[bench]
+    fn part2_bench(b: &mut Bencher) {
+        let input = get_input(DAY_NUM);
+        b.iter(|| {
+            black_box(part2(input.clone()));
+        });
     }
 }
