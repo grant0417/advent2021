@@ -39,7 +39,7 @@ pub fn part2(input: impl AsRef<str>) -> String {
 
     'line_loop: for line in lines {
         let mut stack = vec![];
-  
+
         for c in line.chars() {
             match c {
                 '(' | '[' | '{' | '<' => stack.push(c),
@@ -51,10 +51,10 @@ pub fn part2(input: impl AsRef<str>) -> String {
                         (_, ')') | (_, ']') | (_, '}') | (_, '>') => {
                             continue 'line_loop;
                         }
-                        (_, _) => panic!("Unexpected character")
+                        (_, _) => panic!("Unexpected character"),
                     }
                 }
-                _ => panic!("Unexpected character")
+                _ => panic!("Unexpected character"),
             }
         }
 

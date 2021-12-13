@@ -40,9 +40,7 @@ impl HeightMap {
     fn is_lowest_adjacent(&self, x: i32, y: i32) -> bool {
         let pos_val = self.get(x, y).unwrap();
 
-        self.get_adjacent(x, y)
-            .iter()
-            .all(|&v| v > pos_val)
+        self.get_adjacent(x, y).iter().all(|&v| v > pos_val)
     }
 
     // Get the list of flooded tiles

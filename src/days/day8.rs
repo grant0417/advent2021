@@ -105,9 +105,9 @@ pub fn part2(input: impl AsRef<str>) -> String {
 
         let mut number = 0;
         for segment in &out_segments {
-            for i in 0..10 {
-                if let Some(inner_segment) = seven_segments[i] {
-                    if *segment == inner_segment {
+            for (i, known_segment) in seven_segments.iter().enumerate() {
+                if let Some(inner_segment) = known_segment {
+                    if segment == inner_segment {
                         number = number * 10 + i;
                     }
                 }
