@@ -120,7 +120,7 @@ mod tests {
     const TEST_PART_1_RESULT: &'static str = "1656";
     const TEST_PART_2_RESULT: &'static str = "195";
     const REAL_PART_1_RESULT: &'static str = "1773";
-    const REAL_PART_2_RESULT: &'static str = "";
+    const REAL_PART_2_RESULT: &'static str = "494";
 
     #[test]
     fn test_part1() {
